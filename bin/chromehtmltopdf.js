@@ -9,7 +9,7 @@ var program = require('commander');
 var action;
 
 program
-  .version('0.0.1')
+  .version('0.0.2')
   .option('--port <port>', 'chrome remote debugging port')
   .option('-B, --margin-bottom <marginBottom>', 'Set the page bottom margin', parseFloat)
   .option('-L, --margin-left <marginLeft>', 'Set the page left margin', parseFloat)
