@@ -1,0 +1,35 @@
+{
+  "name": "chromehtmltopdf",
+  "version": "0.0.1",
+  "description": "render html to pdf or an image. headless",
+  "author": "Jason Gowan",
+  "bin": {
+    "chromehtmltopdf": "./bin/chromehtmltopdf.js",
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chromehtmltopdf/chromehtmltopdf.git"
+  },
+  "keywords": [
+    "headless",
+    "chrome",
+    "pdf",
+    "image"
+  ],
+  "author": "Jason Gowan",
+  "license": "MIT",
+  "files": [
+    "LICENSE.MIT",
+    "README.md",
+    "bin",
+    "lib"
+  ],
+  "dependencies": {
+    "chrome-remote-interface": "0.23.x",
+    "commander": "2.1.x"
+  },
+  "bugs": {
+    "url": "https://github.com/chromehtmltopdf/chromehtmltopdf/issues"
+  },
+  "homepage": "https://github.com/chromehtmltopdf/chromehtmltopdf#readme"
+}
