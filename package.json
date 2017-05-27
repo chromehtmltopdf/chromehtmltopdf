@@ -1,6 +1,6 @@
 {
   "name": "chromehtmltopdf",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "render html to pdf or an image. headless",
   "author": "Jason Gowan",
   "bin": {
