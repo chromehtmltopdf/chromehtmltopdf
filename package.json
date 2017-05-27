@@ -21,6 +21,7 @@
   "files": [
     "LICENSE.MIT",
     "README.md",
+    "index.js",
     "bin",
     "lib"
   ],
