@@ -27,7 +27,7 @@
   ],
   "dependencies": {
     "chrome-remote-interface": "0.23.x",
-    "commander": "2.1.x"
+    "commander": "2.9.x"
   },
   "bugs": {
     "url": "https://github.com/chromehtmltopdf/chromehtmltopdf/issues"

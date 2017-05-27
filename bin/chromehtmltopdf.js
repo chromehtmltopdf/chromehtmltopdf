@@ -17,8 +17,6 @@ program
   .option('-T, --margin-top <marginTop>', 'Set the page top margin', parseFloat)
   .option('--page-height <pageHeight>', 'Page height', parseFloat)
   .option('--page-width <pageWidth>', 'Page width', parseFloat)
-
-program
   .arguments('<url> [output]')
   .action(function(url, output) {
       action = chromehtmltopdf.bind(null, url, output);
