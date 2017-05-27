@@ -4,7 +4,7 @@
   "description": "render html to pdf or an image. headless",
   "author": "Jason Gowan",
   "bin": {
-    "chromehtmltopdf": "./bin/chromehtmltopdf.js",
+    "chromehtmltopdf": "./bin/chromehtmltopdf.js"
   },
   "repository": {
     "type": "git",
