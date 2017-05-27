@@ -19,7 +19,7 @@ program
   .option('--page-width <pageWidth>', 'Page width', parseFloat)
 
 program
-  .command('<url> [output]')
+  .arguments('<url> [output]')
   .action(function(url, output) {
       action = chromehtmltopdf.bind(null, url, output);
   });
