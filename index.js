@@ -3,12 +3,34 @@
 
 const CDP = require('chrome-remote-interface');
 const fs = require('fs');
+const path = require('path');
+const pdf_capture = require('./lib/pdf_capture');
+const png_capture = require('./lib/png_capture');
+const jpeg_capture = require('./lib/jpeg_capture');
+
+const jpeg_extnames = {
+    '.jpg': null, '.jpeg': null, '.jpe': null,
+    '.jif': null, '.jfif': null, '.jfi': null
+};
 
 module.exports = function(url, filePath, options) {
     CDP(options, (client) => {
         // Extract used DevTools domains.
         const Network = client.Network;
         const Page = client.Page;
+
+        if (typeof(options.capture_strategy) === 'undefined') {
+            options.capture_strategy = pdf_capture;
+
+            if (filePath) {
+                const extname = path.extname(filePath.toLowerCase());
+                if (extname in jpeg_extnames) {
+                    options.capture_strategy = jpeg_capture;
+                } else if (extname === '.png') {
+                    options.capture_strategy = png_capture;
+                }
+            }
+        }
 
         // Enable events on domains we are interested in.
         Promise.all([
@@ -22,15 +44,7 @@ module.exports = function(url, filePath, options) {
         });
 
         Page.loadEventFired(() => {
-            const pdfOptions = {
-                marginBottom: options.marginBottom || 0,
-                marginTop: options.marginTop || 0,
-                marginRight: options.marginRight || 1,
-                marginLeft: options.marginLeft || 1,
-                paperHeight: options.pageHeight || 11,
-                paperWidth: options.pageWidth || 8.5
-            };
-            Page.printToPDF(pdfOptions).then((result) => {
+            options.capture_strategy(Page, options).then((result) => {
                 if (filePath) {
                     const data = Buffer.from(result.data, 'base64')
                     fs.writeFileSync(filePath, data);
