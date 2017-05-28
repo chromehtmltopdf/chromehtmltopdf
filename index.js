@@ -57,18 +57,20 @@ module.exports = function(url, filePath, options) {
             });
 
         Page.loadEventFired(() => {
-            options.capture_strategy(Page, options).then((result) => {
-                if (filePath) {
-                    const data = Buffer.from(result.data, 'base64')
-                    fs.writeFileSync(filePath, data);
-                } else {
-                    console.log(result.data);
-                }
-                client.close();
-            }).catch((err) => {
-                console.error('Screenshot Failed: ', err);
-                client.close();
-            });
+            setTimeout(() => {
+                options.capture_strategy(Page, options).then((result) => {
+                    if (filePath) {
+                        const data = Buffer.from(result.data, 'base64')
+                        fs.writeFileSync(filePath, data);
+                    } else {
+                        console.log(result.data);
+                    }
+                    client.close();
+                }).catch((err) => {
+                    console.error('Screenshot Failed: ', err);
+                    client.close();
+                });
+            }, options.javascriptDelay || 0);
         });
     }).on('error', (err) => {
         console.error('Cannot connect to browser:', err);

@@ -20,6 +20,7 @@ program
   .option('--image-quality <imageQuality> ', 'When jpeg compressing images use this quality (default 94)', parseInt)
 
   .option('--user-agent <userAgent>', 'Override the default user agent')
+  .option('--javascript-delay <javascriptDelay>', 'Wait some milliseconds for javascript after the load event is fired.')
   .arguments('<url> [output]')
   .action(function(url, output) {
       action = chromehtmltopdf.bind(null, url, output);
