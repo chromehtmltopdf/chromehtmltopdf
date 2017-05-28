@@ -37,11 +37,24 @@ module.exports = function(url, filePath, options) {
             Network.enable(),
             Page.enable()
         ]).then(() => {
-            return Page.navigate({url: url}).catch((err) => {
-                console.error('Unable to navigate to %s :', url, err)
-                client.close();
+            if (options.userAgent) {
+                Network.setUserAgentOverride({userAgent: options.userAgent}).then(() => {
+                    return Page.navigate({url: url}).catch((err) => {
+                        console.error('Unable to navigate to %s :', url, err)
+                        client.close();
+                    });
+                }).catch((err) => {
+
+                    console.error('Unable to set user agent %s :', options.userAgent, err)
+                    client.close();
+                });
+            } else {
+                return Page.navigate({url: url}).catch((err) => {
+                    console.error('Unable to navigate to %s :', url, err)
+                    client.close();
+                });
+            }
             });
-        });
 
         Page.loadEventFired(() => {
             options.capture_strategy(Page, options).then((result) => {

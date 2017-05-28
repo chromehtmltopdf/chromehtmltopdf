@@ -18,6 +18,8 @@ program
   .option('--page-height <pageHeight>', 'Page height', parseFloat)
   .option('--page-width <pageWidth>', 'Page width', parseFloat)
   .option('--image-quality <imageQuality> ', 'When jpeg compressing images use this quality (default 94)', parseInt)
+
+  .option('--user-agent <userAgent>', 'Override the default user agent')
   .arguments('<url> [output]')
   .action(function(url, output) {
       action = chromehtmltopdf.bind(null, url, output);
